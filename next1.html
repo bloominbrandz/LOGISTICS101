@@ -3,181 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 2: The Paper Trail | Logistics Academy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Principles of Logistics | Lesson 01</title>
     <style>
-        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
-        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
-        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
-        .show { display: block; }
-        .doc-box { border-left: 6px solid #4f46e5; transition: all 0.3s ease; }
-        .doc-box:hover { background-color: #f8fafc; transform: translateX(5px); }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
-
-    <div class="flex min-h-screen">
-        <main class="flex-1 p-10 max-w-5xl">
-            <header class="mb-10 border-b-8 border-indigo-600 pb-6">
-                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 02: The Paper Trail</h1>
-                <p class="text-xl text-slate-500 font-bold mt-2">BOL, POD, and Rate Confirmations: The Legal Trinity</p>
-            </header>
-
-            <section class="mb-12 space-y-6">
-                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1">01. The Document Trinity</h2>
-                
-                <div class="doc-box bg-white p-6 rounded-xl shadow-sm">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <b class="text-indigo-600 text-xl uppercase italic">The BOL (Bill of Lading)</b>
-                            <p class="text-sm text-slate-600 mt-2">The <b>Title.</b> It proves who owns the cargo and acts as the contract of carriage between the shipper and carrier.</p>
-                        </div>
-                        <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded">LEGAL CONTRACT</span>
-                    </div>
-                </div>
-
-                <div class="doc-box bg-white p-6 rounded-xl shadow-sm" style="border-left-color: #16a34a;">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <b class="text-green-600 text-xl uppercase italic">The POD (Proof of Delivery)</b>
-                            <p class="text-sm text-slate-600 mt-2">The <b>Receipt.</b> Once signed by the receiver, the carrier's liability usually ends. No POD = No Payment.</p>
-                        </div>
-                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">PAYMENT TRIGGER</span>
-                    </div>
-                </div>
-
-                <div class="doc-box bg-white p-6 rounded-xl shadow-sm" style="border-left-color: #f59e0b;">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <b class="text-amber-600 text-xl uppercase italic">The RC (Rate Confirmation)</b>
-                            <p class="text-sm text-slate-600 mt-2">The <b>Price Tag.</b> The agreement between Broker and Carrier. Must include the MC#, rate, and any fees.</p>
-                        </div>
-                        <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded">FINANCIAL CONTRACT</span>
-                    </div>
-                </div>
-            </section>
-
-            <section class="mb-12 p-8 bg-amber-900 text-white rounded-[2rem] shadow-xl border-4 border-amber-500">
-                <h2 class="text-2xl font-black uppercase italic mb-4">🚨 Mandatory Document Audit</h2>
-                <p class="text-amber-200 mb-6 font-medium text-sm">You are checking a POD for a load of high-value electronics. The receiver signed the POD but wrote <b>"Subject to Count"</b> next to their name. Why is this a danger for the broker?</p>
-                <div class="grid grid-cols-1 gap-3">
-                    <button id="audit-btn" onclick="completeAudit(true, this)" class="text-left p-4 bg-amber-800 border border-amber-600 rounded-xl hover:bg-amber-700 transition font-bold">
-                        A) It means they haven't verified the contents; a claim for missing items could come weeks later.
-                    </button>
-                    <button onclick="completeAudit(false, this)" class="text-left p-4 bg-amber-800 border border-amber-600 rounded-xl hover:bg-amber-700 transition font-bold">
-                        B) It's not a danger; it's a standard retail notation that has no legal weight.
-                    </button>
-                </div>
-            </section>
-
-            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
-                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter">Documentation Exam</h2>
-
-                <div id="quiz-area" class="space-y-12">
-                    <div class="q-block" id="q0">
-                        <p class="text-lg font-bold mb-4">Q1: A driver delivers a load without getting the BOL signed. The shipper refuses to pay because there is no 'Clean BOL'. What happened?</p>
-                        <div class="space-y-3">
-                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) The driver failed to secure a POD; there is no legal proof of delivery.</button>
-                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) The driver needs to go back and sign it himself to fix it.</button>
-                        </div>
-                        <div class="feedback text-sm mt-2"></div>
-                    </div>
-
-                    <div class="q-block" id="q1">
-                        <p class="text-lg font-bold mb-4">Q2: A Rate Confirmation (RC) is signed for $1,500. After delivery, the carrier demands $2,000 because of traffic. Is the broker legally required to pay?</p>
-                        <div class="space-y-3">
-                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Yes, traffic is an unforeseen 'act of God' under logistics law.</button>
-                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) No. The signed RC is a binding contract for the agreed amount.</button>
-                        </div>
-                        <div class="feedback text-sm mt-2"></div>
-                    </div>
-                </div>
-
-                <div class="mt-16 text-center border-t border-slate-700 pt-10">
-                    <div id="score-box" class="text-indigo-400 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
-                    <button id="next-btn" class="locked bg-indigo-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 3</button>
-                    <p id="lock-message" class="text-slate-500 text-[10px] mt-4 font-bold uppercase tracking-widest">Complete Audit and Quiz to Advance</p>
-                </div>
-            </section>
-        </main>
-
-        <aside class="w-96 bg-white border-l border-slate-200 p-8">
-            <h2 class="text-2xl font-black uppercase italic border-b-4 border-indigo-600 pb-2 mb-6 tracking-tighter">Paperwork Glossary</h2>
-            <div class="space-y-6">
-                <div>
-                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Clean BOL</b>
-                    <p class="text-xs text-slate-500 font-medium">A Bill of Lading where the carrier has noted NO damage or shortages during pickup.</p>
-                </div>
-                <div>
-                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">SL&C</b>
-                    <p class="text-xs text-slate-500 font-medium">Shipper Load and Count. This protects the carrier if they weren't allowed to watch the truck being loaded.</p>
-                </div>
-                <div>
-                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Lumper Receipt</b>
-                    <p class="text-xs text-slate-500 font-medium">A receipt for third-party labor used to unload the truck. Must be attached to the POD for reimbursement.</p>
-                </div>
-                <div>
-                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Accessorials</b>
-                    <p class="text-xs text-slate-500 font-medium">Extra fees listed on the RC, like Detention ($50/hr) or Layover ($250).</p>
-                </div>
-                <div>
-                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">SCAC Code</b>
-                    <p class="text-xs text-slate-500 font-medium">Standard Carrier Alpha Code. A unique 4-letter code used to identify a transportation company.</p>
-                </div>
-            </div>
-        </aside>
-    </div>
-
-    <script>
-        let quizScore = 0;
-        let auditPassed = false;
-        const totalQuestions = 2;
-
-        function completeAudit(isCorrect, btn) {
-            if (!isCorrect) {
-                alert("❌ AUDIT FAILED: If you miss this detail, the shipper will deduct thousands from your commission. Try again.");
-                return;
-            }
-            auditPassed = true;
-            btn.parentElement.innerHTML = "<b class='text-green-400 text-2xl uppercase italic'>✓ Audit Passed: You identified the liability trap.</b>";
-            checkProgress();
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --navy: #1e3a5f;
+            --navy-light: #2c5282;
+            --accent: #f6ad55;
+            --accent-hover: #ed8936;
+            --text: #2d3748;
+            --text-light: #718096;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --example-bg: #fffbeb;
+            --example-border: #f6ad55;
+            --quote-bg: #f0f9ff;
+            --quote-border: #3b82f6;
         }
-
-        function check(qIdx, isCorrect, btn) {
-            const block = document.getElementById('q' + qIdx);
-            const feedback = block.querySelector('.feedback');
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Lesson Header */
+        .lesson-header {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .lesson-header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+        
+        .lesson-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+        }
+        
+        /* Content Blocks */
+        .content-block {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .content-block h2 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .content-block p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .content-block strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .content-block ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+            margin: 1rem 0;
+        }
+        
+        .content-block ul li {
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+            color: var(--text-light);
+            font-size: 0.9375rem;
+        }
+        
+        .content-block ul li::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.25rem;
+            line-height: 0;
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--example-bg);
+            border-left: 4px solid var(--example-border);
+            border-radius: 0 10px 10px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9375rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .example-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Blockquote */
+        blockquote {
+            background: var(--quote-bg);
+            border-left: 4px solid var(--quote-border);
+            border-radius: 0 10px 10px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--text);
+        }
+        
+        blockquote em {
+            font-style: normal;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        
+        /* Navigation Footer */
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-back, .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-back {
+            background: var(--white);
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        
+        .btn-back:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+        
+        .btn-next {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.25);
+        }
+        
+        .btn-next:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 95, 0.35);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 640px) {
+            .lesson-header h1 {
+                font-size: 1.75rem;
+            }
             
-            if (block.dataset.answered) return;
-            block.dataset.answered = "true";
-
-            if (isCorrect) {
-                btn.classList.add('correct-btn');
-                feedback.innerText = "✓ CORRECT: Contract integrity maintained.";
-                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
-                quizScore++;
-            } else {
-                btn.classList.add('incorrect-btn');
-                feedback.innerText = "✗ INCORRECT: In logistics, if it isn't in writing, it didn't happen.";
-                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            .content-block {
+                padding: 1.5rem;
             }
-
-            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
-            checkProgress();
-        }
-
-        function checkProgress() {
-            if (quizScore === totalQuestions && auditPassed) {
-                const nextBtn = document.getElementById('next-btn');
-                nextBtn.classList.remove('locked');
-                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
-                nextBtn.disabled = false;
-                nextBtn.innerText = "PROCEED TO MODULE 3 →";
-                nextBtn.onclick = () => window.location.href = 'next2.html';
-                document.getElementById('lock-message').innerText = "CERTIFICATION UNLOCKED";
-                document.getElementById('lock-message').className = "text-green-400 font-black text-sm mt-4";
+            
+            .navigation-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-back, .btn-next {
+                justify-content: center;
             }
         }
-    </script>
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Module 01</a> / <span>Principles of Logistics</span>
+        </div>
+    </nav>
+
+    <main class="container lesson-content">
+        <header class="lesson-header">
+            <h1>The 7 Core Principles of Logistics</h1>
+            <p>Moving beyond the "7 Rights" into systemic efficiency.</p>
+        </header>
+
+        <section class="content-block">
+            <h2>1. The Systemic Principle</h2>
+            <p>Logistics is not a collection of independent silos (transport, warehouse, procurement). It is a <strong>single integrated system</strong>. A change in one area always impacts another.</p>
+            
+            <div class="example-box">
+                <strong>The Trade-off Example:</strong> If you reduce "Transportation Costs" by switching from Air to Sea, your "Inventory Carrying Costs" will likely go up because goods are sitting on a boat for 30 days instead of 2.
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>2. Total Cost Analysis</h2>
+            <p>Expert logisticians don't look for the cheapest individual price; they look for the lowest <strong>Total Cost of Ownership (TCO)</strong>. This includes:</p>
+            <ul>
+                <li>Direct purchase price</li>
+                <li>Transportation and freight</li>
+                <li>Storage and warehousing fees</li>
+                <li>Cost of capital (money tied up in stock)</li>
+                <li>Cost of poor quality (returns/damage)</li>
+            </ul>
+        </section>
+
+        <section class="content-block">
+            <h2>3. The Principle of Logistics Velocity</h2>
+            <p>Velocity refers to the speed at which assets (inventory, cash, information) move through the system. High velocity reduces the <strong>Cash-to-Cash Cycle</strong>—the time between paying for raw materials and getting paid by the customer.</p>
+        </section>
+
+        <section class="content-block">
+            <h2>4. Postponement (Value Engineering)</h2>
+            <p>This principle involves delaying the final configuration of a product until the last possible moment. This reduces inventory risk.</p>
+            <blockquote>
+                <em>Example:</em> A clothing brand stocks plain white t-shirts in the warehouse and only dyes them colors once they see which color is trending this week.
+            </blockquote>
+        </section>
+
+        <section class="content-block">
+            <h2>5. The Differentiation Principle</h2>
+            <p>Not all products or customers should be treated the same. Logistics must differentiate service levels based on customer value and product criticality.</p>
+            
+            <div class="example-box">
+                <strong>Segmented Service:</strong> A hospital needs same-day delivery for emergency medical supplies, but can wait a week for office stationery. Applying the same logistics strategy to both wastes money and risks lives.
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>6. The Principle of Standardization</h2>
+            <p>While differentiation matters, so does standardization. Using common processes, packaging sizes, and IT platforms reduces complexity and enables economies of scale.</p>
+            <blockquote>
+                <em>Example:</em> Amazon uses standardized box sizes and automated sorting systems. This predictability allows them to optimize truck loading and reduce empty space by up to 40%.
+            </blockquote>
+        </section>
+
+        <section class="content-block">
+            <h2>7. The Principle of Sustainability</h2>
+            <p>Modern logistics must balance cost, service, and environmental impact. This includes route optimization to reduce fuel, modal shifts to lower-carbon transport, and circular supply chain design.</p>
+            
+            <div class="example-box">
+                <strong>The Green Trade-off:</strong> Electric delivery vehicles have higher upfront costs but lower lifetime emissions and fuel costs. Sustainable logistics often requires accepting short-term cost increases for long-term value.
+            </div>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="intro.htm" class="btn-back">← Back to Intro</a>
+            <a href="2.html" class="btn-next">Next: Importance of Logistics →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Logistics Academy | Lesson 1.1</p>
+        </div>
+    </footer>
+
 </body>
 </html>
