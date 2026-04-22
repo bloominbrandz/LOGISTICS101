@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 10: Legal & Strategy | Logistics Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glossary-term { border-bottom: 2px dotted #4f46e5; cursor: help; }
+        .quiz-option:hover { transform: translateX(4px); }
+        .locked { opacity: 0.5; pointer-events: none; filter: grayscale(100%); }
+        .pulse-locked { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
+        .correct { background-color: #dcfce7 !important; border-color: #16a34a !important; color: #14532d !important; }
+        .incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; color: #7f1d1d !important; }
+        .carmack-box { background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #d97706; }
+        .blind-ship { background: linear-gradient(90deg, #f3e8ff 0%, #e9d5ff 100%); border-left: 4px solid #7c3aed; }
+        .cheat-sheet { display: none; }
+        .cheat-sheet.active { display: block !important; }
+    </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased">
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-8 max-w-4xl mx-auto">
+            <header class="mb-8 border-b-4 border-indigo-600 pb-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-bold text-indigo-600 uppercase tracking-wider mb-1">Module 10 of 10</p>
+                        <h1 class="text-4xl font-bold text-slate-900">Legal & Strategy</h1>
+                        <p class="text-slate-600 mt-2 text-lg">Blind Shipments and the Carmack Amendment</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="bg-slate-100 rounded-lg p-3 text-center">
+                            <div class="text-2xl font-bold text-indigo-600" id="progress-display">0%</div>
+                            <div class="text-xs text-slate-500 uppercase">Complete</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <article class="prose max-w-none mb-12">
+                <section class="mb-8 carmack-box p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-amber-900 mb-4">⚖️ The Carmack Amendment (49 U.S.C. § 14706)</h2>
+                    <p class="text-amber-800 mb-4">The Carmack Amendment governs interstate cargo liability. It creates a strict liability regime for carriers with only 5 statutory defenses.</p>
+                    <div class="bg-white p-4 rounded border border-amber-200 mb-4">
+                        <h4 class="font-bold text-amber-700 mb-2">Carmack's 5 Defenses (Carrier Must Prove)</h4>
+                        <ol class="text-sm text-slate-700 space-y-1 list-decimal list-inside">
+                            <li><strong>Act of God:</strong> Natural disasters, unforeseeable weather</li>
+                            <li><strong>Public Enemy:</strong> War, terrorism, riot</li>
+                            <li><strong>Public Authority:</strong> Government seizure, quarantine</li>
+                            <li><strong>Inherent Vice:</strong> Natural deterioration (fruit ripening, chemical instability)</li>
+                            <li><strong>Shipper Negligence:</strong> Improper packaging, faulty loading</li>
+                        </ol>
+                        <p class="text-sm text-red-700 mt-2 font-semibold">Missing from this list: Theft, driver error, carrier negligence, accidents. Carmack makes carriers liable for these.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded border border-amber-200 text-sm">
+                            <h4 class="font-bold text-amber-700 mb-2">Carmack Liability Limits</h4>
+                            <ul class="text-slate-700 space-y-1">• Released value: $100,000 max<br>• Full actual loss: If no release<br>• Claim filing: 9 months<br>• Lawsuit: 2 years</ul>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-amber-200 text-sm">
+                            <h4 class="font-bold text-amber-700 mb-2">Broker Carmack Status</h4>
+                            <ul class="text-slate-700 space-y-1">• Pure brokers: Not carriers<br>• Liability: Negligence only<br>• Shipper can sue both</ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-8 blind-ship p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-purple-900 mb-4">👁️‍🗨️ Blind Shipments: The Identity Shield</h2>
+                    <p class="text-purple-800 mb-4">Blind shipments hide origin/destination parties from each other. Common in distributor relationships.</p>
+                </section>
+            </article>
+
+            <section class="bg-white border-2 border-slate-200 rounded-xl p-8 shadow-sm" id="quiz-section">
+                <h2 class="text-2xl font-bold text-slate-900 mb-2">Check Your Knowledge: Legal Warfare</h2>
+                <p class="text-slate-600 mb-6 italic">Pass all 4 scenarios to unlock the Final Cheat Sheet.</p>
+
+                <div class="quiz-item mb-8 p-6 bg-slate-50 rounded-lg border border-slate-200" data-question="1">
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Scenario 1: The Carmack Conundrum</h3>
+                    <p class="text-slate-700 mb-4">$450K electronics shipment. Carrier's driver falls asleep. BOL has $100K limitation clause. Recovery?</p>
+                    <div class="space-y-2">
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="false">A) $450K; driver fatigue is not Act of God</button>
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="true">B) $100K; BOL limitation clause is enforceable</button>
+                    </div>
+                    <div class="feedback mt-3 hidden p-3 rounded text-sm font-semibold"></div>
+                </div>
+
+                <div class="quiz-item mb-8 p-6 bg-slate-50 rounded-lg border border-slate-200" data-question="2">
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Scenario 2: The Blind BOL Fraud</h3>
+                    <p class="text-slate-700 mb-4">Manufacturer A ships knockoffs via Blind BOL. Investigation reveals A was shipping knockoffs. Defense?</p>
+                    <div class="space-y-2">
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="false">A) No knowledge; blind BOL is standard</button>
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="true">B) Severe exposure; 18 U.S.C. § 1001 concealment</button>
+                    </div>
+                    <div class="feedback mt-3 hidden p-3 rounded text-sm font-semibold"></div>
+                </div>
+
+                <div class="quiz-item mb-8 p-6 bg-slate-50 rounded-lg border border-slate-200" data-question="3">
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Scenario 3: The Subrogation Trap</h3>
+                    <p class="text-slate-700 mb-4">$800K cargo loss. Insurance sues you for "negligent selection." Defense?</p>
+                    <div class="space-y-2">
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="false">A) Pay $800K; subrogation is absolute</button>
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="true">B) Fight; B rating + 2 years meets industry standard</button>
+                    </div>
+                    <div class="feedback mt-3 hidden p-3 rounded text-sm font-semibold"></div>
+                </div>
+
+                <div class="quiz-item mb-8 p-6 bg-slate-50 rounded-lg border border-slate-200" data-question="4">
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">Scenario 4: The Carmack Waiver Attempt</h3>
+                    <p class="text-slate-700 mb-4">Shipper presents contract waiving all Carmack rights. Enforceability?</p>
+                    <div class="space-y-2">
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="false">A) Fully enforceable</button>
+                        <button class="quiz-option w-full text-left p-3 rounded border border-slate-300 bg-white" data-correct="true">B) Mixed; Carmack waiver is VOID (49 U.S.C. § 14101(b))</button>
+                    </div>
+                    <div class="feedback mt-3 hidden p-3 rounded text-sm font-semibold"></div>
+                </div>
+
+                <div class="flex items-center justify-between pt-6 border-t border-slate-200">
+                    <div class="text-sm text-slate-600">Progress: <span id="quiz-score">0</span>/4 Correct</div>
+                    <button id="next-module-btn" class="locked bg-indigo-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all">🏆 Final Cheat Sheet</button>
+                </div>
+                <p id="lock-message" class="text-center text-amber-600 text-sm mt-2 font-semibold pulse-locked">🔒 Pass all scenarios correctly to unlock the Cheat Sheet</p>
+            </section>
+
+            <section id="cheat-sheet" class="cheat-sheet mt-12 bg-slate-900 text-white p-8 rounded-xl shadow-2xl">
+                <h2 class="text-3xl font-bold mb-6 border-b border-slate-700 pb-4">🎓 Master Cheat Sheet</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-slate-800 p-4 rounded">
+                        <h4 class="font-bold text-amber-400 mb-2">Carmack 5 Defenses</h4>
+                        <p class="text-xs text-slate-300">Act of God, Public Enemy, Public Authority, Inherent Vice, Shipper Negligence</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded">
+                        <h4 class="font-bold text-blue-400 mb-2">Accessorials</h4>
+                        <p class="text-xs text-slate-300">TONU: $150-400 | Detention: $50-75/hr | Layover: $300-500/day</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-80 bg-slate-50 border-l border-slate-200 p-6 overflow-y-auto h-screen sticky top-0 hidden md:block">
+            <h2 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">Logistics Glossary</h2>
+            <div class="space-y-3 text-sm">
+                <div class="p-3 bg-white rounded border border-indigo-200"><h4 class="font-bold text-indigo-600">BOL</h4><p class="text-slate-600">Bill of Lading. Legal contract between shipper and carrier.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">POD</h4><p class="text-slate-600">Proof of Delivery. Signed document confirming receipt.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">RC</h4><p class="text-slate-600">Rate Confirmation. Broker-carrier contract.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">FSC</h4><p class="text-slate-600">Fuel Surcharge. Price adjustment for diesel cost.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">TONU</h4><p class="text-slate-600">Truck Order Not Used. Cancellation fee.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">HOS</h4><p class="text-slate-600">Hours of Service. Driver time limits.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">ELD</h4><p class="text-slate-600">Electronic Logging Device. Electronic HOS tracking.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">MC#</h4><p class="text-slate-600">Motor Carrier Number. Operating authority ID.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">NMFC</h4><p class="text-slate-600">Freight Classification for LTL pricing.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">LTL</h4><p class="text-slate-600">Less Than Truckload shipment.</p></div>
+                <div class="p-3 bg-white rounded border border-slate-200"><h4 class="font-bold text-indigo-600">OTD</h4><p class="text-slate-600">On-Time Delivery percentage.</p></div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let correctAnswers = 0;
+        const totalQuestions = 4;
+
+        document.querySelectorAll('.quiz-item').forEach(item => {
+            const options = item.querySelectorAll('.quiz-option');
+            const feedback = item.querySelector('.feedback');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    if (item.dataset.answered) return;
+                    item.dataset.answered = 'true';
+                    const isCorrect = this.dataset.correct === 'true';
+                    
+                    if (isCorrect) {
+                        this.classList.add('correct');
+                        feedback.textContent = '✓ Correct. Standard legal procedure.';
+                        feedback.classList.add('correct');
+                        correctAnswers++;
+                    } else {
+                        this.classList.add('incorrect');
+                        feedback.textContent = '✗ Incorrect. Review legal standards.';
+                        feedback.classList.add('incorrect');
+                        options.forEach(opt => { if (opt.dataset.correct === 'true') opt.classList.add('correct'); });
+                    }
+                    feedback.classList.remove('hidden');
+                    updateProgress();
+                });
+            });
+        });
+
+        function updateProgress() {
+            document.getElementById('quiz-score').textContent = correctAnswers;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            document.getElementById('progress-display').textContent = percentage + '%';
+            if (correctAnswers === totalQuestions) {
+                document.getElementById('next-module-btn').classList.remove('locked');
+                document.getElementById('lock-message').textContent = '✓ All scenarios passed!';
+                document.getElementById('cheat-sheet').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

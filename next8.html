@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Academy | Module 9: Intermodal & Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
+        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
+        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
+        .show { display: block; }
+        .ocean-bg { background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%); color: white; }
+        .rail-bg { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); border-left: 8px solid #64748b; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
+
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-10 max-w-5xl">
+            <header class="mb-10 border-b-8 border-cyan-600 pb-6">
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 09: Intermodal & Global</h1>
+                <p class="text-xl text-slate-500 font-bold mt-2 italic text-cyan-700">Ports, Rails, and Ocean Containers</p>
+            </header>
+
+            <section class="mb-12 p-8 rounded-3xl shadow-xl rail-bg border-2 border-slate-200">
+                <h2 class="text-2xl font-black uppercase mb-4 text-slate-800 italic">🚆 The Intermodal Lifecycle</h2>
+                <p class="text-sm font-bold text-slate-600 mb-6 uppercase">Rail is for distance. Drayage is for the "First & Last Mile."</p>
+                
+                
+
+                <div class="grid grid-cols-3 gap-4 mt-6">
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-cyan-500 text-center">
+                        <b class="block uppercase text-xs mb-1">Drayage</b>
+                        <p class="text-[10px] text-slate-500 italic">Short distance trucking between port/rail and warehouse.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-indigo-500 text-center">
+                        <b class="block uppercase text-xs mb-1">Class I Rail</b>
+                        <p class="text-[10px] text-slate-500 italic">Long-haul cross-country (UP, BNSF, CSX, Norfolk Southern).</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl shadow-sm border-t-4 border-blue-500 text-center">
+                        <b class="block uppercase text-xs mb-1">Transloading</b>
+                        <p class="text-[10px] text-slate-500 italic">Moving cargo from ocean containers to 53' domestic trailers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12 p-8 rounded-3xl shadow-xl ocean-bg relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-2xl font-black uppercase mb-4 italic text-cyan-300">🌊 Ocean Freight & The COGSA Trap</h2>
+                    <p class="text-sm mb-6">In trucking, the carrier is liable for the full cargo value. In ocean freight, the **Carriage of Goods by Sea Act (COGSA)** limits liability to just **$500 per package**.</p>
+                    
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+                        <h4 class="font-black uppercase text-xs mb-3 text-cyan-200">Example of a Disaster:</h4>
+                        <p class="text-sm leading-relaxed">
+                            A container of high-end electronics worth **$1,000,000** falls off a ship. If you didn't buy separate Marine Cargo Insurance, the steamship line only owes you **$500**. 
+                        </p>
+                        <p class="mt-4 text-xs font-bold text-red-300 uppercase italic">⚠️ Never move ocean freight without verifying All-Risk Marine Insurance.</p>
+                    </div>
+                </div>
+                <div class="absolute -bottom-10 -right-10 opacity-20 text-[150px] font-black italic select-none">SHIP</div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1 mb-6 italic">Port Fee Matrix</h2>
+                <div class="overflow-hidden rounded-3xl border-2 border-slate-200 shadow-lg">
+                    <table class="w-full text-left text-sm bg-white">
+                        <thead class="bg-slate-900 text-white uppercase text-xs">
+                            <tr>
+                                <th class="p-4">Fee Name</th>
+                                <th class="p-4">What it is</th>
+                                <th class="p-4">Average Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-4 font-bold">Demurrage</td>
+                                <td class="p-4 text-slate-500 italic">Fee for the container sitting at the terminal too long.</td>
+                                <td class="p-4 font-black text-red-600">$150 - $400 / Day</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Detention (Per Diem)</td>
+                                <td class="p-4 text-slate-500 italic">Fee for keeping the equipment (container/chassis) outside the port.</td>
+                                <td class="p-4 font-black text-red-600">$75 - $200 / Day</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Chassis Split</td>
+                                <td class="p-4 text-slate-500 italic">Fee charged when a driver has to go to one location for a chassis and another for the container.</td>
+                                <td class="p-4 font-black text-indigo-600">$100 - $150 / Flat</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter text-cyan-400">Logistics IQ Test</h2>
+
+                <div id="quiz-area" class="space-y-12">
+                    <div class="q-block" id="q0">
+                        <p class="text-lg font-bold mb-4">Q1: Your container of furniture arrives at the Port of Savannah. The "Free Time" for demurrage expires on Friday. You can't find a drayage driver until Monday. Who is responsible for the weekend demurrage fees?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) The Shipper/Consignee. As the broker, you facilitate, but the owner of the cargo is responsible for port storage fees unless agreed otherwise.</button>
+                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) You (the Broker). It's your job to find a truck, so any delays are on your tab.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+
+                    <div class="q-block" id="q1">
+                        <p class="text-lg font-bold mb-4">Q2: A client wants to move 44,000 lbs of heavy machinery in a 20-foot ocean container over the road in the USA. What is the immediate concern?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) None. 44k is standard weight for a trailer.</button>
+                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Bridge Laws. A 20-foot container puts a lot of weight on a very short space. You will likely need a Tri-Axle Chassis to be legal on US highways.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-slate-700 pt-10">
+                    <div id="score-box" class="text-cyan-400 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
+                    <button id="next-btn" class="locked bg-cyan-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Final Module Unlocked Soon</button>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-96 bg-white border-l border-slate-200 p-8">
+            <h2 class="text-2xl font-black uppercase italic border-b-4 border-cyan-600 pb-2 mb-6 tracking-tighter text-cyan-600">Global Lexicon</h2>
+            <div class="space-y-6">
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Bill of Lading (Ocean)</b>
+                    <p class="text-xs text-slate-500 font-medium">Unlike a truck BOL, an Ocean BOL acts as a "Document of Title." Whoever holds the original BOL literally owns the cargo.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">TEU</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">Twenty-foot Equivalent Unit. The standard measure for ocean shipping volume. A 40ft container is 2 TEUs.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Bridge Laws</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">Federal regulations (Inner Bridge Formula) that dictate how much weight can be carried on axles based on how far apart they are.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">NVOCC</b>
+                    <p class="text-xs text-slate-500 font-medium uppercase font-bold text-cyan-600">Non-Vessel Operating Common Carrier</p>
+                    <p class="text-xs text-slate-500 font-medium">A broker for ocean freight who issues their own House BOLs but doesn't actually own the ships.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        const totalQuestions = 2;
+
+        function check(qIdx, isCorrect, btn) {
+            const block = document.getElementById('q' + qIdx);
+            const feedback = block.querySelector('.feedback');
+            
+            if (block.dataset.answered) return;
+            block.dataset.answered = "true";
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+                feedback.innerText = "✓ CORRECT: You're navigating the complexities of global trade like a pro.";
+                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
+                quizScore++;
+            } else {
+                btn.classList.add('incorrect-btn');
+                feedback.innerText = "✗ INCORRECT: Port operations are strict. Small mistakes lead to massive bills.";
+                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            }
+
+            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
+
+            if (quizScore === totalQuestions) {
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.classList.remove('locked');
+                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
+                nextBtn.disabled = false;
+                nextBtn.innerText = "PROCEED TO FINAL MODULE →";
+                nextBtn.onclick = () => window.location.href = 'next9.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Academy | Module 5: The Crisis Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
+        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
+        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
+        .show { display: block; }
+        .emergency-border { border-left: 10px solid #dc2626; }
+        .protocol-step { position: relative; padding-left: 3rem; margin-bottom: 1.5rem; }
+        .step-num { position: absolute; left: 0; top: 0; background: #dc2626; color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
+
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-10 max-w-5xl">
+            <header class="mb-10 border-b-8 border-red-600 pb-6">
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 05: The Crisis Room</h1>
+                <p class="text-xl text-slate-500 font-bold mt-2 text-red-600">Breakdowns, Rejections, and Dark Truck Protocols</p>
+            </header>
+
+            <section class="mb-12 bg-white p-8 rounded-3xl shadow-xl emergency-border">
+                <h2 class="text-2xl font-black uppercase mb-6 text-red-700 underline italic">🚨 Dark Truck: The 60-Minute Countdown</h2>
+                
+                <div class="protocol-step">
+                    <div class="step-num">1</div>
+                    <b class="uppercase text-sm">0-15 Minutes: Blitz</b>
+                    <p class="text-xs text-slate-500">Call driver 3x. Call carrier dispatch. Check ELD for a "Pings" vs "Actuals" mismatch.</p>
+                </div>
+
+                <div class="protocol-step">
+                    <div class="step-num">2</div>
+                    <b class="uppercase text-sm">15-45 Minutes: The Soft Alert</b>
+                    <p class="text-xs text-slate-500">Notify the Shipper. "We have a tracking gap." Ask if they've had contact. Start looking for backup trucks.</p>
+                </div>
+
+                <div class="protocol-step">
+                    <div class="step-num">3</div>
+                    <b class="uppercase text-sm">45-60 Minutes: Law Enforcement</b>
+                    <p class="text-xs text-slate-500">File a police report in the last known city. Notify insurance. Declare an active cargo emergency.</p>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1 mb-6 italic">The Rejection Matrix</h2>
+                <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                    <table class="w-full text-left bg-white text-sm">
+                        <thead class="bg-slate-100 font-black uppercase">
+                            <tr>
+                                <th class="p-4">Timing</th>
+                                <th class="p-4">Legal Status</th>
+                                <th class="p-4">Your Move</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr>
+                                <td class="p-4 font-bold italic">Pre-Dispatch</td>
+                                <td class="p-4 text-green-600 font-bold">Inconvenience</td>
+                                <td class="p-4">Repost load. No big deal.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold italic">At Shipper</td>
+                                <td class="p-4 text-amber-600 font-bold">Breach of Contract</td>
+                                <td class="p-4">Demand TONU. Find immediate replacement.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold italic">Mid-Transit</td>
+                                <td class="p-4 text-red-600 font-bold">Conversion / Theft</td>
+                                <td class="p-4 uppercase font-black">Call Police Immediately.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter text-red-500">War Room Scenarios</h2>
+
+                <div id="quiz-area" class="space-y-12">
+                    <div class="q-block" id="q0">
+                        <p class="text-lg font-bold mb-4">Q1: Friday 11:45 PM. A reefer (frozen beef) breaks down in Nebraska. Shop opens Monday. Meat is at 28°F, but critical temp is 32°F. What do you do?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Wait for Monday repairs since it's currently below 32°F.</button>
+                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Authorize an immediate $8k transload. The cost of loss ($220k) is too high to risk.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+
+                    <div class="q-block" id="q1">
+                        <p class="text-lg font-bold mb-4">Q2: $890k Pharma load. Driver stops in an industrial park at 3 AM and goes dark. GPS shows them moving the wrong way. Your move?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Call 911 / State Police immediately. This is an active cargo theft profile.</button>
+                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Text the driver and give them 60 minutes to explain the detour.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-slate-700 pt-10">
+                    <div id="score-box" class="text-red-500 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
+                    <button id="next-btn" class="locked bg-red-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 6</button>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-96 bg-white border-l border-slate-200 p-8">
+            <h2 class="text-2xl font-black uppercase italic border-b-4 border-red-600 pb-2 mb-6 tracking-tighter text-red-600">Crisis Glossary</h2>
+            <div class="space-y-6">
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Transload</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">Moving freight from one truck to another mid-transit due to breakdown or rejection.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Subrogation</b>
+                    <p class="text-xs text-slate-500 font-medium">The legal right of an insurance company to "step into the shoes" of the broker to sue a carrier for damages.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Conversion</b>
+                    <p class="text-xs text-slate-500 font-medium">The legal term for when a carrier refuses to deliver a load and effectively "steals" possession of it.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Reefer Breakdown</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">When the cooling unit on a trailer fails. In food/pharma, this is an automatic "Total Loss" emergency.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        const totalQuestions = 2;
+
+        function check(qIdx, isCorrect, btn) {
+            const block = document.getElementById('q' + qIdx);
+            const feedback = block.querySelector('.feedback');
+            
+            if (block.dataset.answered) return;
+            block.dataset.answered = "true";
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+                feedback.innerText = "✓ CORRECT: Asset protection is the priority.";
+                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
+                quizScore++;
+            } else {
+                btn.classList.add('incorrect-btn');
+                feedback.innerText = "✗ INCORRECT: In a crisis, hesitation equals total loss.";
+                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            }
+
+            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
+
+            if (quizScore === totalQuestions) {
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.classList.remove('locked');
+                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
+                nextBtn.disabled = false;
+                nextBtn.innerText = "PROCEED TO MODULE 6 →";
+                nextBtn.onclick = () => window.location.href = 'next5.html';
+            }
+        }
+    </script>
+</body>
+</html>

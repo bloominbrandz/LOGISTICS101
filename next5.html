@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Academy | Module 6: Accessorials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
+        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
+        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
+        .show { display: block; }
+        .math-card { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-left: 8px solid #2563eb; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
+
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-10 max-w-5xl">
+            <header class="mb-10 border-b-8 border-indigo-600 pb-6">
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 06: Accessorials</h1>
+                <p class="text-xl text-slate-500 font-bold mt-2 italic">Protecting the Margin: TONU, Detention, & Layovers</p>
+            </header>
+
+            <section class="grid grid-cols-3 gap-6 mb-12">
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200">
+                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-black uppercase">Standard: $150-$250</span>
+                    <h3 class="text-2xl font-black mt-3 uppercase tracking-tighter">TONU</h3>
+                    <p class="text-xs text-slate-500 mt-2"><b>Truck Order Not Used.</b> Paid when a shipper cancels a load after the driver has already been dispatched.</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200">
+                    <span class="bg-amber-100 text-amber-600 px-3 py-1 rounded-full text-xs font-black uppercase">Standard: $50/hr</span>
+                    <h3 class="text-2xl font-black mt-3 uppercase tracking-tighter">Detention</h3>
+                    <p class="text-xs text-slate-500 mt-2"><b>Wait Time.</b> Usually kicks in after 2 hours of "Free Time" at the dock. Requires signed in/out times.</p>
+                </div>
+                <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-200">
+                    <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-black uppercase">Standard: $250-$400</span>
+                    <h3 class="text-2xl font-black mt-3 uppercase tracking-tighter">Layover</h3>
+                    <p class="text-xs text-slate-500 mt-2"><b>24-Hour Delay.</b> Paid when a driver is forced to stay overnight because the shipper/receiver cannot load/unload.</p>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1 mb-6 italic">The Detention Formula</h2>
+                
+                <div class="math-card p-8 rounded-3xl shadow-lg mt-4">
+                    <div class="grid grid-cols-2 gap-8 items-center">
+                        <div>
+                            <p class="text-sm font-bold uppercase text-blue-600">The Scenario:</p>
+                            <ul class="text-lg font-black space-y-2 mt-2">
+                                <li>Appt Time: 08:00</li>
+                                <li>Check-Out: 13:00</li>
+                                <li>Total Time: 5 Hours</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white/50 p-6 rounded-2xl border border-blue-200">
+                            <p class="text-sm font-bold uppercase text-slate-500">The Calculation:</p>
+                            <p class="text-3xl font-black">5 hrs - <span class="text-red-500">2 hrs Free</span> = 3 Billable</p>
+                            <p class="text-xl font-bold mt-2 text-green-600">Total: 3 x $50 = $150</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter text-indigo-400">Accessorial Warfare</h2>
+
+                <div id="quiz-area" class="space-y-12">
+                    <div class="q-block" id="q0">
+                        <p class="text-lg font-bold mb-4">Q1: Driver arrives at 06:00 for an 08:00 appointment. He is loaded and out by 11:30. How much detention is owed? (Standard 2 hours free time applies).</p>
+                        <div class="space-y-3">
+                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) 1.5 Hours. Detention starts at the appointment time (08:00), not the early arrival.</button>
+                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) 3.5 Hours. He arrived at 06:00, so the clock starts then.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+
+                    <div class="q-block" id="q1">
+                        <p class="text-lg font-bold mb-4">Q2: A driver claims a $400 layover because the receiver was closed. You have his GPS logs, but NO written authorization from the shipper. What is the outcome?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Pay him. GPS logs are sufficient proof of his delay.</button>
+                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Deny the claim. Without written shipper authorization, the broker cannot bill the customer, and therefore cannot pay the carrier.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-slate-700 pt-10">
+                    <div id="score-box" class="text-indigo-400 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
+                    <button id="next-btn" class="locked bg-indigo-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 7</button>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-96 bg-white border-l border-slate-200 p-8">
+            <h2 class="text-2xl font-black uppercase italic border-b-4 border-indigo-600 pb-2 mb-6 tracking-tighter">The Payables List</h2>
+            <div class="space-y-6">
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Lumper</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">Third-party laborers at warehouses who unload trailers. Requires a "Lumper Receipt" for reimbursement.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Deadhead</b>
+                    <p class="text-xs text-slate-500 font-medium">Miles driven with an empty trailer to get to a load. High deadhead usually requires a higher rate.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Scale Fee</b>
+                    <p class="text-xs text-slate-500 font-medium italic"></p>
+                    <p class="text-xs text-slate-500 font-medium">Small fee ($12-$15) paid to verify the truck is not over the 80,000 lbs legal limit.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Driver Assist</b>
+                    <p class="text-xs text-slate-500 font-medium">When a driver has to physically help move boxes. Usually costs an extra $75-$150.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        const totalQuestions = 2;
+
+        function check(qIdx, isCorrect, btn) {
+            const block = document.getElementById('q' + qIdx);
+            const feedback = block.querySelector('.feedback');
+            
+            if (block.dataset.answered) return;
+            block.dataset.answered = "true";
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+                feedback.innerText = "✓ CORRECT: This protects the brokerage from unbillable expenses.";
+                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
+                quizScore++;
+            } else {
+                btn.classList.add('incorrect-btn');
+                feedback.innerText = "✗ INCORRECT: Logistics is governed by the contract and timestamps, not feelings.";
+                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            }
+
+            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
+
+            if (quizScore === totalQuestions) {
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.classList.remove('locked');
+                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
+                nextBtn.disabled = false;
+                nextBtn.innerText = "PROCEED TO MODULE 7 →";
+                nextBtn.onclick = () => window.location.href = 'next6.html';
+            }
+        }
+    </script>
+</body>
+</html>

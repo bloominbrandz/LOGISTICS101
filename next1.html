@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: The Paper Trail | Logistics Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
+        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
+        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
+        .show { display: block; }
+        .doc-box { border-left: 6px solid #4f46e5; transition: all 0.3s ease; }
+        .doc-box:hover { background-color: #f8fafc; transform: translateX(5px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
+
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-10 max-w-5xl">
+            <header class="mb-10 border-b-8 border-indigo-600 pb-6">
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 02: The Paper Trail</h1>
+                <p class="text-xl text-slate-500 font-bold mt-2">BOL, POD, and Rate Confirmations: The Legal Trinity</p>
+            </header>
+
+            <section class="mb-12 space-y-6">
+                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1">01. The Document Trinity</h2>
+                
+                <div class="doc-box bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <b class="text-indigo-600 text-xl uppercase italic">The BOL (Bill of Lading)</b>
+                            <p class="text-sm text-slate-600 mt-2">The <b>Title.</b> It proves who owns the cargo and acts as the contract of carriage between the shipper and carrier.</p>
+                        </div>
+                        <span class="bg-indigo-100 text-indigo-700 text-[10px] font-bold px-2 py-1 rounded">LEGAL CONTRACT</span>
+                    </div>
+                </div>
+
+                <div class="doc-box bg-white p-6 rounded-xl shadow-sm" style="border-left-color: #16a34a;">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <b class="text-green-600 text-xl uppercase italic">The POD (Proof of Delivery)</b>
+                            <p class="text-sm text-slate-600 mt-2">The <b>Receipt.</b> Once signed by the receiver, the carrier's liability usually ends. No POD = No Payment.</p>
+                        </div>
+                        <span class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">PAYMENT TRIGGER</span>
+                    </div>
+                </div>
+
+                <div class="doc-box bg-white p-6 rounded-xl shadow-sm" style="border-left-color: #f59e0b;">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <b class="text-amber-600 text-xl uppercase italic">The RC (Rate Confirmation)</b>
+                            <p class="text-sm text-slate-600 mt-2">The <b>Price Tag.</b> The agreement between Broker and Carrier. Must include the MC#, rate, and any fees.</p>
+                        </div>
+                        <span class="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded">FINANCIAL CONTRACT</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12 p-8 bg-amber-900 text-white rounded-[2rem] shadow-xl border-4 border-amber-500">
+                <h2 class="text-2xl font-black uppercase italic mb-4">🚨 Mandatory Document Audit</h2>
+                <p class="text-amber-200 mb-6 font-medium text-sm">You are checking a POD for a load of high-value electronics. The receiver signed the POD but wrote <b>"Subject to Count"</b> next to their name. Why is this a danger for the broker?</p>
+                <div class="grid grid-cols-1 gap-3">
+                    <button id="audit-btn" onclick="completeAudit(true, this)" class="text-left p-4 bg-amber-800 border border-amber-600 rounded-xl hover:bg-amber-700 transition font-bold">
+                        A) It means they haven't verified the contents; a claim for missing items could come weeks later.
+                    </button>
+                    <button onclick="completeAudit(false, this)" class="text-left p-4 bg-amber-800 border border-amber-600 rounded-xl hover:bg-amber-700 transition font-bold">
+                        B) It's not a danger; it's a standard retail notation that has no legal weight.
+                    </button>
+                </div>
+            </section>
+
+            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter">Documentation Exam</h2>
+
+                <div id="quiz-area" class="space-y-12">
+                    <div class="q-block" id="q0">
+                        <p class="text-lg font-bold mb-4">Q1: A driver delivers a load without getting the BOL signed. The shipper refuses to pay because there is no 'Clean BOL'. What happened?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) The driver failed to secure a POD; there is no legal proof of delivery.</button>
+                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) The driver needs to go back and sign it himself to fix it.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+
+                    <div class="q-block" id="q1">
+                        <p class="text-lg font-bold mb-4">Q2: A Rate Confirmation (RC) is signed for $1,500. After delivery, the carrier demands $2,000 because of traffic. Is the broker legally required to pay?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Yes, traffic is an unforeseen 'act of God' under logistics law.</button>
+                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) No. The signed RC is a binding contract for the agreed amount.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-slate-700 pt-10">
+                    <div id="score-box" class="text-indigo-400 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
+                    <button id="next-btn" class="locked bg-indigo-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 3</button>
+                    <p id="lock-message" class="text-slate-500 text-[10px] mt-4 font-bold uppercase tracking-widest">Complete Audit and Quiz to Advance</p>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-96 bg-white border-l border-slate-200 p-8">
+            <h2 class="text-2xl font-black uppercase italic border-b-4 border-indigo-600 pb-2 mb-6 tracking-tighter">Paperwork Glossary</h2>
+            <div class="space-y-6">
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Clean BOL</b>
+                    <p class="text-xs text-slate-500 font-medium">A Bill of Lading where the carrier has noted NO damage or shortages during pickup.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">SL&C</b>
+                    <p class="text-xs text-slate-500 font-medium">Shipper Load and Count. This protects the carrier if they weren't allowed to watch the truck being loaded.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Lumper Receipt</b>
+                    <p class="text-xs text-slate-500 font-medium">A receipt for third-party labor used to unload the truck. Must be attached to the POD for reimbursement.</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">Accessorials</b>
+                    <p class="text-xs text-slate-500 font-medium">Extra fees listed on the RC, like Detention ($50/hr) or Layover ($250).</p>
+                </div>
+                <div>
+                    <b class="text-indigo-600 block text-lg font-black uppercase tracking-tighter">SCAC Code</b>
+                    <p class="text-xs text-slate-500 font-medium">Standard Carrier Alpha Code. A unique 4-letter code used to identify a transportation company.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        let auditPassed = false;
+        const totalQuestions = 2;
+
+        function completeAudit(isCorrect, btn) {
+            if (!isCorrect) {
+                alert("❌ AUDIT FAILED: If you miss this detail, the shipper will deduct thousands from your commission. Try again.");
+                return;
+            }
+            auditPassed = true;
+            btn.parentElement.innerHTML = "<b class='text-green-400 text-2xl uppercase italic'>✓ Audit Passed: You identified the liability trap.</b>";
+            checkProgress();
+        }
+
+        function check(qIdx, isCorrect, btn) {
+            const block = document.getElementById('q' + qIdx);
+            const feedback = block.querySelector('.feedback');
+            
+            if (block.dataset.answered) return;
+            block.dataset.answered = "true";
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+                feedback.innerText = "✓ CORRECT: Contract integrity maintained.";
+                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
+                quizScore++;
+            } else {
+                btn.classList.add('incorrect-btn');
+                feedback.innerText = "✗ INCORRECT: In logistics, if it isn't in writing, it didn't happen.";
+                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            }
+
+            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
+            checkProgress();
+        }
+
+        function checkProgress() {
+            if (quizScore === totalQuestions && auditPassed) {
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.classList.remove('locked');
+                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
+                nextBtn.disabled = false;
+                nextBtn.innerText = "PROCEED TO MODULE 3 →";
+                nextBtn.onclick = () => window.location.href = 'next2.html';
+                document.getElementById('lock-message').innerText = "CERTIFICATION UNLOCKED";
+                document.getElementById('lock-message').className = "text-green-400 font-black text-sm mt-4";
+            }
+        }
+    </script>
+</body>
+</html>

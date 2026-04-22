@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Academy | Module 7: Compliance & Fraud</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
+        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
+        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
+        .show { display: block; }
+        .fraud-bg { background: repeating-linear-gradient(45deg, #fee2e2, #fee2e2 10px, #ffffff 10px, #ffffff 20px); }
+        .vetting-card { border-left: 8px solid #16a34a; background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
+
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-10 max-w-5xl">
+            <header class="mb-10 border-b-8 border-red-600 pb-6">
+                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 07: Compliance & Fraud</h1>
+                <p class="text-xl text-slate-500 font-bold mt-2 text-red-600">Double-Brokering, Identity Theft, and Insurance Forgery</p>
+            </header>
+
+            <section class="mb-12 p-8 rounded-3xl shadow-xl fraud-bg border-2 border-red-200">
+                <h2 class="text-2xl font-black uppercase mb-4 text-red-700 italic">🚨 The Double-Brokering Epidemic</h2>
+                <p class="text-sm font-bold text-red-800 mb-6 uppercase">Loss Estimate 2024: $500M+ annually</p>
+                
+                
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                        <h4 class="font-black text-slate-900 uppercase text-sm mb-3">How the Scam Works:</h4>
+                        <ol class="text-xs space-y-2 list-decimal list-inside text-slate-600">
+                            <li>Scammer poses as a carrier and takes your load.</li>
+                            <li>Scammer re-posts your load on a public board for a higher rate.</li>
+                            <li>A legitimate carrier hauls the load.</li>
+                            <li>You pay the Scammer; the Scammer disappears without paying the driver.</li>
+                            <li>The legitimate carrier sues you or the shipper for payment.</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border-2 border-red-500">
+                        <h4 class="font-black text-red-600 uppercase text-sm mb-3">Identity Red Flags:</h4>
+                        <ul class="text-xs space-y-2 text-slate-600 font-bold">
+                            <li>• VOIP/Burner phone numbers (Check Area Codes).</li>
+                            <li>• Gmail/Yahoo/Outlook email addresses (No professional domain).</li>
+                            <li>• MC# less than 6 months old.</li>
+                            <li>• 0 Inspections on FMCSA SAFER despite having "20 trucks."</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1 mb-6 italic">The Vetting Protocol</h2>
+                <div class="vetting-card p-8 rounded-3xl shadow-lg">
+                    <h3 class="text-xl font-black text-green-800 mb-4">Never Trust a PDF Certificate</h3>
+                    <p class="text-sm text-green-700 mb-6">Fraudsters use Photoshop to fake insurance. Follow this strict chain of verification:</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-xl">
+                            <span class="bg-green-600 text-white font-black px-2 py-1 rounded">1</span>
+                            <p class="text-sm"><b>Call the Agent:</b> Do NOT use the number on the PDF. Google the agency's name and call their official office line.</p>
+                        </div>
+                        
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-xl">
+                            <span class="bg-green-600 text-white font-black px-2 py-1 rounded">2</span>
+                            <p class="text-sm"><b>Verify "Additional Insured":</b> Ensure your brokerage is listed correctly to ensure you are notified if the policy cancels.</p>
+                        </div>
+                        <div class="flex items-start gap-4 bg-white p-4 rounded-xl">
+                            <span class="bg-green-600 text-white font-black px-2 py-1 rounded">3</span>
+                            <p class="text-sm"><b>Cross-Check FMCSA:</b> Match the address on the insurance cert with the address on the MC# authority paperwork.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter text-red-500">Security Clearance</h2>
+
+                <div id="quiz-area" class="space-y-12">
+                    <div class="q-block" id="q0">
+                        <p class="text-lg font-bold mb-4">Q1: You find out a load was double-brokered. You already paid the scammer "Carrier A," but now the actual "Carrier B" is calling you demanding payment. Who is legally responsible to pay Carrier B?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) No one. Carrier B's contract is with the scammer, not you.</button>
+                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) You (the Broker). Under many state laws and the Carmack Amendment, the "Beneficiary of the Service" may be held liable for the freight charges even if you already paid the scammer.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+
+                    <div class="q-block" id="q1">
+                        <p class="text-lg font-bold mb-4">Q2: A carrier with 1 month of authority and 0 inspections wants to haul your $150k electronics load. They provide a PDF insurance cert immediately. What is your action?</p>
+                        <div class="space-y-3">
+                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Decline. High-value cargo + new authority + no inspections = 99% probability of fraud/theft.</button>
+                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Book them. Everyone has to start somewhere, and their insurance cert looks legitimate.</button>
+                        </div>
+                        <div class="feedback text-sm mt-2"></div>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-slate-700 pt-10">
+                    <div id="score-box" class="text-red-500 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
+                    <button id="next-btn" class="locked bg-red-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 8</button>
+                </div>
+            </section>
+        </main>
+
+        <aside class="w-96 bg-white border-l border-slate-200 p-8">
+            <h2 class="text-2xl font-black uppercase italic border-b-4 border-red-600 pb-2 mb-6 tracking-tighter">Compliance Tools</h2>
+            <div class="space-y-6">
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Carrier411</b>
+                    <p class="text-xs text-slate-500 font-medium italic">[Logo placeholder for Carrier411 service]</p>
+                    <p class="text-xs text-slate-500 font-medium">The industry-standard website for checking carrier fraud reports and performance history. If they have "Notes" here, read them carefully.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">SAFER (FMCSA)</b>
+                    <p class="text-xs text-slate-500 font-medium">The Safety and Fitness Electronic Records System. Public database showing inspections, crashes, and authority status.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Contingent Cargo</b>
+                    <p class="text-xs text-slate-500 font-medium">Insurance that brokers carry. It only pays out if the carrier's primary insurance fails. It is NOT a substitute for carrier insurance.</p>
+                </div>
+                <div>
+                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">TIA Watchdog</b>
+                    <p class="text-xs text-slate-500 font-medium">A reporting tool for the Transportation Intermediaries Association where brokers report bad-acting carriers.</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        let quizScore = 0;
+        const totalQuestions = 2;
+
+        function check(qIdx, isCorrect, btn) {
+            const block = document.getElementById('q' + qIdx);
+            const feedback = block.querySelector('.feedback');
+            
+            if (block.dataset.answered) return;
+            block.dataset.answered = "true";
+
+            if (isCorrect) {
+                btn.classList.add('correct-btn');
+                feedback.innerText = "✓ CORRECT: Compliance is the only thing standing between you and a massive lawsuit.";
+                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
+                quizScore++;
+            } else {
+                btn.classList.add('incorrect-btn');
+                feedback.innerText = "✗ INCORRECT: In logistics fraud, being 'nice' or 'trusting' costs you six figures.";
+                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+            }
+
+            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
+
+            if (quizScore === totalQuestions) {
+                const nextBtn = document.getElementById('next-btn');
+                nextBtn.classList.remove('locked');
+                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
+                nextBtn.disabled = false;
+                nextBtn.innerText = "PROCEED TO MODULE 8 →";
+                nextBtn.onclick = () => window.location.href = 'next7.html';
+            }
+        }
+    </script>
+</body>
+</html>
