@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logistics Performance & Strategy | Module 01</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --navy: #1e3a5f;
+            --navy-light: #2c5282;
+            --accent: #f6ad55;
+            --accent-hover: #ed8936;
+            --text: #2d3748;
+            --text-light: #64748b;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --example-bg: #fffbeb;
+            --example-border: #f6ad55;
+            --green-light: #ecfdf5;
+            --green: #10b981;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Lesson Header */
+        .lesson-header {
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .lesson-header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+        
+        .lesson-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+        }
+        
+        /* Content Blocks */
+        .content-block {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .content-block h2 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .content-block p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .content-block strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .content-block ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.625rem;
+        }
+        
+        .content-block ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.625rem;
+            color: var(--text-light);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+        }
+        
+        .content-block ul li::before {
+            content: '•';
+            color: var(--accent);
+            font-size: 1.25rem;
+            line-height: 0;
+            margin-top: 2px;
+        }
+        
+        /* Strategy Grid */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+        
+        .concept-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: all 0.2s;
+        }
+        
+        .concept-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        
+        .concept-card h3 {
+            color: var(--navy);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+        
+        /* Utility Tag */
+        .utility-tag {
+            display: inline-block;
+            background: var(--green-light);
+            color: var(--green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Formula Zone */
+        .formula-zone {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .formula-zone strong {
+            display: block;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .formula-display {
+            font-family: 'Courier New', monospace;
+            font-size: 1.375rem;
+            color: var(--accent);
+            display: block;
+            margin-top: 1rem;
+            word-break: break-word;
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--example-bg);
+            border-left: 4px solid var(--example-border);
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.9375rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .example-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Tradeoff Table */
+        .tradeoff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        
+        .tradeoff-table th { 
+            background: var(--navy); 
+            color: var(--white);
+            padding: 1rem; 
+            text-align: left; 
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .tradeoff-table td { 
+            padding: 1rem; 
+            border-bottom: 1px solid var(--border); 
+            font-size: 0.875rem;
+            color: var(--text-light);
+        }
+        
+        .tradeoff-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tradeoff-table tr:nth-child(even) {
+            background: var(--bg);
+        }
+        
+        /* Navigation Footer */
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-back, .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-back {
+            background: var(--white);
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        
+        .btn-back:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+        
+        .btn-next {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.25);
+        }
+        
+        .btn-next:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 95, 0.35);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 640px) {
+            .lesson-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content-block {
+                padding: 1.5rem;
+            }
+            
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .formula-zone {
+                padding: 1.5rem;
+            }
+            
+            .formula-display {
+                font-size: 1rem;
+            }
+            
+            .tradeoff-table th,
+            .tradeoff-table td {
+                padding: 0.75rem;
+                font-size: 0.8125rem;
+            }
+            
+            .navigation-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-back, .btn-next {
+                justify-content: center;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Module 01</a> / <span>Performance & Strategy</span>
+        </div>
+    </nav>
+
+    <main class="container lesson-content">
+        <header class="lesson-header">
+            <h1>Logistics Strategy & Performance</h1>
+            <p>Mastering the "7 Rights" through the lens of economic utility and total cost.</p>
+        </header>
+
+        <section class="content-block">
+            <h2>1. The 7 Rights (The Logistics Mix)</h2>
+            <p>Every logistics operation aims for the "Perfect Order" by achieving these seven variables simultaneously:</p>
+            <div class="strategy-grid">
+                <div class="concept-card">
+                    <h3>The Basics</h3>
+                    <ul>
+                        <li><strong>Right Product:</strong> Accuracy in SKUs.</li>
+                        <li><strong>Right Quantity:</strong> No shortages/overages.</li>
+                        <li><strong>Right Condition:</strong> Damage-free arrival.</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>The Execution</h3>
+                    <ul>
+                        <li><strong>Right Place:</strong> Precise delivery point.</li>
+                        <li><strong>Right Time:</strong> Avoiding late/early penalties.</li>
+                        <li><strong>Right Customer:</strong> Authorized receipt.</li>
+                    </ul>
+                </div>
+                <div class="concept-card">
+                    <h3>The Strategy</h3>
+                    <ul>
+                        <li><strong>Right Price:</strong> Maintaining profitability while achieving the other six rights.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>2. The Economic Utility of Logistics</h2>
+            <p>Manufacturing creates <em>Form Utility</em>, but logistics adds value through three distinct economic powers:</p>
+            
+            <div class="strategy-grid">
+                <div class="concept-card">
+                    <span class="utility-tag">Place Utility</span>
+                    <p>Moving products from surplus areas (factories) to deficit areas (retailers).</p>
+                </div>
+                <div class="concept-card">
+                    <span class="utility-tag">Time Utility</span>
+                    <p>Ensuring goods are available during peak demand periods (e.g., umbrellas during rain).</p>
+                </div>
+                <div class="concept-card">
+                    <span class="utility-tag">Possession Utility</span>
+                    <p>Facilitating the transfer of ownership through reliable delivery networks.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>3. Measuring the "Perfect Order"</h2>
+            <p>Individual department metrics often lie. We use a multiplicative formula to find the truth:</p>
+            <div class="formula-zone">
+                <strong>The Perfect Order Index (POI)</strong>
+                <span class="formula-display">On-Time % × Complete % × Damage-Free % × Accurate Docs %</span>
+            </div>
+            <div class="example-box">
+                <strong>Case Study:</strong> If each metric is 90% (seemingly an 'A' grade), the total POI is only <strong>65.6%</strong>. This reveals that nearly 35% of your customers are experiencing a failure.
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>4. The Total Cost Concept (Trade-offs)</h2>
+            <p>Decisions in logistics are never isolated. Reducing cost in one area often increases it in another.</p>
+            
+            <table class="tradeoff-table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Transport Cost</th>
+                        <th>Inventory Cost</th>
+                        <th>Strategic Logic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Switch to Air Freight</td>
+                        <td>📈 High</td>
+                        <td>📉 Low</td>
+                        <td>Best for high-value/perishable items.</td>
+                    </tr>
+                    <tr>
+                        <td>Consolidate Warehouses</td>
+                        <td>📈 High</td>
+                        <td>📉 Low</td>
+                        <td>Reduces overhead but increases "Last Mile" distance.</td>
+                    </tr>
+                    <tr>
+                        <td>Increase Order Size</td>
+                        <td>📉 Low</td>
+                        <td>📈 High</td>
+                        <td>Lower freight rates but higher storage costs.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="2.html" class="btn-back">← Back: Importance</a>
+            <a href="4.html" class="btn-next">Next: Global Trends →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Logistics Academy &copy; 2026 | Lesson 1.3</p>
+        </div>
+    </footer>
+
+</body>
+</html>
