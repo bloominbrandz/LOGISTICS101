@@ -3,170 +3,526 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistics Academy | Module 5: The Crisis Room</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Case Study: El Machetazo | Module 01</title>
     <style>
-        .locked { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
-        .correct-btn { background-color: #16a34a !important; color: white !important; border-color: #14532d !important; }
-        .incorrect-btn { background-color: #dc2626 !important; color: white !important; border-color: #7f1d1d !important; }
-        .feedback { display: none; padding: 12px; margin-top: 10px; font-weight: bold; border-radius: 8px; border: 1px solid; }
-        .show { display: block; }
-        .emergency-border { border-left: 10px solid #dc2626; }
-        .protocol-step { position: relative; padding-left: 3rem; margin-bottom: 1.5rem; }
-        .step-num { position: absolute; left: 0; top: 0; background: #dc2626; color: white; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans leading-tight">
-
-    <div class="flex min-h-screen">
-        <main class="flex-1 p-10 max-w-5xl">
-            <header class="mb-10 border-b-8 border-red-600 pb-6">
-                <h1 class="text-5xl font-black uppercase italic tracking-tighter">Module 05: The Crisis Room</h1>
-                <p class="text-xl text-slate-500 font-bold mt-2 text-red-600">Breakdowns, Rejections, and Dark Truck Protocols</p>
-            </header>
-
-            <section class="mb-12 bg-white p-8 rounded-3xl shadow-xl emergency-border">
-                <h2 class="text-2xl font-black uppercase mb-6 text-red-700 underline italic">🚨 Dark Truck: The 60-Minute Countdown</h2>
-                
-                <div class="protocol-step">
-                    <div class="step-num">1</div>
-                    <b class="uppercase text-sm">0-15 Minutes: Blitz</b>
-                    <p class="text-xs text-slate-500">Call driver 3x. Call carrier dispatch. Check ELD for a "Pings" vs "Actuals" mismatch.</p>
-                </div>
-
-                <div class="protocol-step">
-                    <div class="step-num">2</div>
-                    <b class="uppercase text-sm">15-45 Minutes: The Soft Alert</b>
-                    <p class="text-xs text-slate-500">Notify the Shipper. "We have a tracking gap." Ask if they've had contact. Start looking for backup trucks.</p>
-                </div>
-
-                <div class="protocol-step">
-                    <div class="step-num">3</div>
-                    <b class="uppercase text-sm">45-60 Minutes: Law Enforcement</b>
-                    <p class="text-xs text-slate-500">File a police report in the last known city. Notify insurance. Declare an active cargo emergency.</p>
-                </div>
-            </section>
-
-            <section class="mb-12">
-                <h2 class="text-2xl font-black uppercase bg-slate-900 text-white inline-block px-4 py-1 mb-6 italic">The Rejection Matrix</h2>
-                <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
-                    <table class="w-full text-left bg-white text-sm">
-                        <thead class="bg-slate-100 font-black uppercase">
-                            <tr>
-                                <th class="p-4">Timing</th>
-                                <th class="p-4">Legal Status</th>
-                                <th class="p-4">Your Move</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr>
-                                <td class="p-4 font-bold italic">Pre-Dispatch</td>
-                                <td class="p-4 text-green-600 font-bold">Inconvenience</td>
-                                <td class="p-4">Repost load. No big deal.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-bold italic">At Shipper</td>
-                                <td class="p-4 text-amber-600 font-bold">Breach of Contract</td>
-                                <td class="p-4">Demand TONU. Find immediate replacement.</td>
-                            </tr>
-                            <tr>
-                                <td class="p-4 font-bold italic">Mid-Transit</td>
-                                <td class="p-4 text-red-600 font-bold">Conversion / Theft</td>
-                                <td class="p-4 uppercase font-black">Call Police Immediately.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
-                <h2 class="text-3xl font-black uppercase italic mb-8 tracking-tighter text-red-500">War Room Scenarios</h2>
-
-                <div id="quiz-area" class="space-y-12">
-                    <div class="q-block" id="q0">
-                        <p class="text-lg font-bold mb-4">Q1: Friday 11:45 PM. A reefer (frozen beef) breaks down in Nebraska. Shop opens Monday. Meat is at 28°F, but critical temp is 32°F. What do you do?</p>
-                        <div class="space-y-3">
-                            <button onclick="check(0, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Wait for Monday repairs since it's currently below 32°F.</button>
-                            <button onclick="check(0, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Authorize an immediate $8k transload. The cost of loss ($220k) is too high to risk.</button>
-                        </div>
-                        <div class="feedback text-sm mt-2"></div>
-                    </div>
-
-                    <div class="q-block" id="q1">
-                        <p class="text-lg font-bold mb-4">Q2: $890k Pharma load. Driver stops in an industrial park at 3 AM and goes dark. GPS shows them moving the wrong way. Your move?</p>
-                        <div class="space-y-3">
-                            <button onclick="check(1, true, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">A) Call 911 / State Police immediately. This is an active cargo theft profile.</button>
-                            <button onclick="check(1, false, this)" class="w-full text-left p-4 rounded-xl bg-slate-800 border border-slate-700 hover:bg-slate-700 transition">B) Text the driver and give them 60 minutes to explain the detour.</button>
-                        </div>
-                        <div class="feedback text-sm mt-2"></div>
-                    </div>
-                </div>
-
-                <div class="mt-16 text-center border-t border-slate-700 pt-10">
-                    <div id="score-box" class="text-red-500 font-black text-2xl mb-4 uppercase">Score: 0 / 2</div>
-                    <button id="next-btn" class="locked bg-red-600 px-16 py-5 rounded-full text-2xl font-black uppercase italic shadow-lg" disabled>Unlock Module 6</button>
-                </div>
-            </section>
-        </main>
-
-        <aside class="w-96 bg-white border-l border-slate-200 p-8">
-            <h2 class="text-2xl font-black uppercase italic border-b-4 border-red-600 pb-2 mb-6 tracking-tighter text-red-600">Crisis Glossary</h2>
-            <div class="space-y-6">
-                <div>
-                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Transload</b>
-                    <p class="text-xs text-slate-500 font-medium italic"></p>
-                    <p class="text-xs text-slate-500 font-medium">Moving freight from one truck to another mid-transit due to breakdown or rejection.</p>
-                </div>
-                <div>
-                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Subrogation</b>
-                    <p class="text-xs text-slate-500 font-medium">The legal right of an insurance company to "step into the shoes" of the broker to sue a carrier for damages.</p>
-                </div>
-                <div>
-                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Conversion</b>
-                    <p class="text-xs text-slate-500 font-medium">The legal term for when a carrier refuses to deliver a load and effectively "steals" possession of it.</p>
-                </div>
-                <div>
-                    <b class="text-slate-900 block text-lg font-black uppercase tracking-tighter">Reefer Breakdown</b>
-                    <p class="text-xs text-slate-500 font-medium italic"></p>
-                    <p class="text-xs text-slate-500 font-medium">When the cooling unit on a trailer fails. In food/pharma, this is an automatic "Total Loss" emergency.</p>
-                </div>
-            </div>
-        </aside>
-    </div>
-
-    <script>
-        let quizScore = 0;
-        const totalQuestions = 2;
-
-        function check(qIdx, isCorrect, btn) {
-            const block = document.getElementById('q' + qIdx);
-            const feedback = block.querySelector('.feedback');
-            
-            if (block.dataset.answered) return;
-            block.dataset.answered = "true";
-
-            if (isCorrect) {
-                btn.classList.add('correct-btn');
-                feedback.innerText = "✓ CORRECT: Asset protection is the priority.";
-                feedback.classList.add('show', 'text-green-500', 'bg-green-900/30', 'border-green-500');
-                quizScore++;
-            } else {
-                btn.classList.add('incorrect-btn');
-                feedback.innerText = "✗ INCORRECT: In a crisis, hesitation equals total loss.";
-                feedback.classList.add('show', 'text-red-500', 'bg-red-900/30', 'border-red-500');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --navy: #1e3a5f;
+            --navy-light: #2c5282;
+            --accent: #f6ad55;
+            --accent-hover: #ed8936;
+            --danger: #e53e3e;
+            --danger-light: #fff5f5;
+            --success: #10b981;
+            --success-light: #f0fff4;
+            --text: #2d3748;
+            --text-light: #64748b;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+        
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: var(--text);
+            background: var(--bg);
+        }
+        
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 24px; 
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        
+        .breadcrumb a {
+            color: var(--navy-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Case Header */
+        .case-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-header::before {
+            content: '📊';
+            position: absolute;
+            top: -20px;
+            right: 5%;
+            font-size: 8rem;
+            opacity: 0.08;
+            transform: rotate(-15deg);
+        }
+        
+        .impact-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--navy);
+            padding: 0.375rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .case-header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .case-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Content Blocks */
+        .content-block {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .content-block h2 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .content-block p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .content-block strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        /* Problem Grid */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+        
+        .failure-card {
+            background: var(--danger-light);
+            border-left: 4px solid var(--danger);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 12px 12px 0;
+            transition: all 0.2s;
+        }
+        
+        .failure-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.08);
+        }
+        
+        .failure-card strong {
+            display: block;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            font-size: 0.9375rem;
+        }
+        
+        .failure-card p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* Solution Section */
+        .solution-section {
+            background: linear-gradient(135deg, var(--success-light) 0%, #ffffff 100%);
+            border: 1px solid #c6f6d5;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+        
+        .solution-section h2 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .solution-section p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .solution-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+            margin: 1.25rem 0;
+        }
+        
+        .solution-section ul li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 0.9375rem;
+            color: var(--text);
+        }
+        
+        .solution-section ul li::before {
+            content: '✓';
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        /* Results Box */
+        .results-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .result-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .result-item:hover {
+            border-color: var(--success);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        
+        .result-item h4 { 
+            color: var(--navy); 
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .result-item p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+        
+        /* Example Box */
+        .example-box {
+            background: var(--white);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 0.9375rem;
+            color: var(--text);
+            line-height: 1.6;
+            border: 1px solid var(--border);
+            border-left-width: 4px;
+        }
+        
+        .example-box strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Learning Outcomes */
+        .learning-outcomes {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+        }
+        
+        .learning-outcomes h2 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+        
+        .outcomes-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .outcomes-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.875rem;
+            background: var(--bg);
+            border-radius: 10px;
+            font-size: 0.9375rem;
+            color: var(--text);
+        }
+        
+        .outcomes-list li::before {
+            content: '✓';
+            width: 22px;
+            height: 22px;
+            background: var(--success);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        /* Navigation Footer */
+        .navigation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0 3rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn-back, .btn-next {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-back {
+            background: var(--white);
+            color: var(--text);
+            border: 1.5px solid var(--border);
+        }
+        
+        .btn-back:hover {
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+        
+        .btn-next {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(30, 58, 95, 0.25);
+        }
+        
+        .btn-next:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 95, 0.35);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        footer p {
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 640px) {
+            .case-header {
+                padding: 2.5rem 1.5rem;
             }
-
-            document.getElementById('score-box').innerText = "Score: " + quizScore + " / " + totalQuestions;
-
-            if (quizScore === totalQuestions) {
-                const nextBtn = document.getElementById('next-btn');
-                nextBtn.classList.remove('locked');
-                nextBtn.classList.add('bg-green-600', 'hover:scale-105');
-                nextBtn.disabled = false;
-                nextBtn.innerText = "PROCEED TO MODULE 6 →";
-                nextBtn.onclick = () => window.location.href = 'next5.html';
+            
+            .case-header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content-block, .solution-section, .learning-outcomes {
+                padding: 1.5rem;
+            }
+            
+            .problem-grid, .results-box {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-back, .btn-next {
+                justify-content: center;
             }
         }
-    </script>
+    </style>
+</head>
+<body>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Module 01</a> / <a href="3.html">Performance & Strategy</a> / <span>Case Study</span>
+        </div>
+    </nav>
+
+    <main class="container lesson-content">
+        <div class="case-header">
+            <div class="impact-badge">Real-World Application</div>
+            <h1>Digital Transformation: El Machetazo</h1>
+            <p>Moving from "Excel Hell" to a Systematic TMS Solution</p>
+        </div>
+
+        <section class="content-block">
+            <h2>The Challenge: The "Spreadsheet Trap"</h2>
+            <p>Before implementing a Transportation Management System (TMS), El Machetazo — a major retail chain in Panama — relied entirely on manual spreadsheets to coordinate trips between branches and warehouses. This created a high-risk environment with several critical operational failures:</p>
+            
+            <div class="problem-grid">
+                <div class="failure-card">
+                    <strong>🚫 Risk of Human Error</strong>
+                    <p>Manual data entry and constant copying between files led to typos, duplicate records, and lost shipments.</p>
+                </div>
+                <div class="failure-card">
+                    <strong>🚫 Zero Exception Alerts</strong>
+                    <p>The system could not flag urgent matters, scheduling conflicts, or route incompatibilities in real time.</p>
+                </div>
+                <div class="failure-card">
+                    <strong>🚫 Knowledge Silos</strong>
+                    <p>Only a few Excel-savvy employees could operate the system, creating bottlenecks and single points of failure.</p>
+                </div>
+                <div class="failure-card">
+                    <strong>🚫 No Data Security</strong>
+                    <p>Files were unprotected, unversioned, and vulnerable to accidental deletion or unauthorized changes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="solution-section">
+            <h2>The Proposed Solution</h2>
+            <p>The logistics team identified that planning and control needed to be <strong>centralized and automated</strong>. They implemented two integrated systems to eliminate manual spreadsheets entirely:</p>
+            <ul>
+                <li><strong>Transportation Management System (TMS):</strong> Centralized trip data, optimized routes, automated scheduling, and provided real-time tracking of all fleet movements.</li>
+                <li><strong>Flexible Manufacturing System (FMS):</strong> Dynamically allocated warehouse resources and labor based on real-time demand and shipment volumes.</li>
+            </ul>
+            <p>Together, these systems created a <strong>single source of truth</strong> for all logistics operations — replacing fragmented spreadsheets with unified, searchable, secure data.</p>
+        </section>
+
+        <section class="content-block">
+            <h2>The Results: Data-Driven Logistics</h2>
+            <p>By implementing a unified control panel, management gained visibility over four critical performance indicators:</p>
+            
+            <div class="results-box">
+                <div class="result-item">
+                    <h4>📋 Master Program</h4>
+                    <p>Systematic generation of scheduled trips with automated conflict detection.</p>
+                </div>
+                <div class="result-item">
+                    <h4>⏱️ Optimal Times</h4>
+                    <p>Data-driven benchmarks for loading, transit, and unloading windows.</p>
+                </div>
+                <div class="result-item">
+                    <h4>🚛 Resource Allocation</h4>
+                    <p>Balanced distribution of trucks, drivers, and warehouse staff.</p>
+                </div>
+                <div class="result-item">
+                    <h4>📡 Real-time Monitoring</h4>
+                    <p>Live visibility of delays, route deviations, and delivery confirmations.</p>
+                </div>
+            </div>
+
+            <div class="example-box">
+                <strong>Key Takeaway:</strong> Transitioning to a TMS allowed El Machetazo to optimize their <strong>Load Capacity</strong> and <strong>Route Layouts</strong>, directly improving their <em>Perfect Order Rate</em> and reducing the <em>Total Cost of Ownership</em>. This case demonstrates how digital transformation turns logistics from a reactive cost center into a proactive strategic advantage.
+            </div>
+        </section>
+
+        <section class="learning-outcomes">
+            <h2>What You Should Learn From This Case</h2>
+            <ul class="outcomes-list">
+                <li>Identify the operational risks of manual, spreadsheet-based logistics systems</li>
+                <li>Explain how TMS and FMS integration creates operational visibility and control</li>
+                <li>Describe the relationship between digital tools and the "7 Rights" of logistics</li>
+                <li>Calculate how automation reduces Total Cost of Ownership (TCO)</li>
+                <li>Apply the El Machetazo model to evaluate your own organization's logistics maturity</li>
+            </ul>
+        </section>
+
+        <div class="navigation-footer">
+            <a href="3.html" class="btn-back">← Back: Performance & Strategy</a>
+            <a href="quiz-01.html" class="btn-next">Logistics BIBLE →</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Logistics Academy &copy; 2026 | Case Study 1.1</p>
+        </div>
+    </footer>
+
 </body>
 </html>
